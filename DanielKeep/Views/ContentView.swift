@@ -11,6 +11,8 @@ struct ContentView: View {
             }
             .navigationTitle("Lists")
         } detail: {
+            
+            // TODO: Transition issue, data is not loaded fast enough so nil state is shown for a split second
             ListView(list: navigationModel.selectedList)
         }
     }
