@@ -7,8 +7,10 @@ struct ListView: View {
         ZStack {
             
             if let list = list {
-                Text(list.name)
-                    .navigationTitle(list.name)
+                List(list.notes) { note in
+                    Text(note.title)
+                }
+                .navigationTitle(list.name)
             } else {
                 Text("Please select a list")
                     .navigationTitle("")

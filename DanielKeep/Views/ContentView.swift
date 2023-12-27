@@ -12,7 +12,7 @@ struct ContentView: View {
             .navigationTitle("Lists")
         } detail: {
             
-            // TODO: Transition issue, data is not loaded fast enough so nil state is shown for a split second
+            // TODO: For some reason the title appears inlined on the first second
             ListView(list: navigationModel.selectedList)
         }
     }
