@@ -57,8 +57,10 @@ struct AddNoteView: View {
     }
     
     func addNote() {
+        var newNote = Note(title: title, description: description)
+        
         withAnimation {
-            list.addNote(note: Note(title: title))
+            list.addNote(note: newNote)
         }
         showForm = false
     }

@@ -10,7 +10,12 @@ struct ListView: View {
             
             if let list = list {
                 List(list.notes) { note in
-                    Text(note.title)
+                    VStack(alignment: .leading) {
+                        Text(note.title)
+                        Text(note.description)
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
                 }
                 .navigationTitle(list.name)
                 .toolbar {

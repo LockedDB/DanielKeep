@@ -11,15 +11,17 @@ import Foundation
 class Note: Identifiable, Hashable {
 
     var title: String
+    var description: String
     var id = UUID()
     
-    init(title: String) {
+    init(title: String, description: String = "") {
         self.title = title
+        self.description = description
     }
     
     static func sampleData() -> Array<Note> {
         return [
-            Note(title: "Pack up for vacation"),
+            Note(title: "Pack up for vacation", description: "Test description"),
             Note(title: "Clean the kitchen")
         ]
     }
