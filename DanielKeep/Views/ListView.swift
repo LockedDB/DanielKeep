@@ -12,9 +12,12 @@ struct ListView: View {
                 List(list.notes) { note in
                     VStack(alignment: .leading) {
                         Text(note.title)
-                        Text(note.description)
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
+                        
+                        if note.description != "" {
+                            Text(note.description)
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                        }
                     }
                 }
                 .navigationTitle(list.name)
