@@ -59,7 +59,6 @@
 			isa = PBXGroup;
 			children = (
 				96B6C6212B3AD6C5009FD20D /* DanielKeepApp.swift */,
-				96B6C6232B3AD6C5009FD20D /* ContentView.swift */,
 				96B6C6332B3AF0AD009FD20D /* Models */,
 				96B6C6302B3AEFA8009FD20D /* Views */,
 				96B6C6252B3AD6C6009FD20D /* Assets.xcassets */,
@@ -80,6 +79,7 @@
 		96B6C6302B3AEFA8009FD20D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				96B6C6232B3AD6C5009FD20D /* ContentView.swift */,
 				96B6C6312B3AEFB6009FD20D /* ListView.swift */,
 			);
 			path = Views;
