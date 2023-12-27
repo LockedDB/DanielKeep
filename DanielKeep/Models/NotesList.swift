@@ -17,6 +17,10 @@ class NotesList: Identifiable, Hashable {
         self.notes = notes
     }
     
+    func addNote(note: Note) {
+        notes.append(note)
+    }
+    
     static func sampleData() -> Array<NotesList> {
         return [
             NotesList(name: "My Notes", notes: Note.sampleData()),
