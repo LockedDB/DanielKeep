@@ -6,37 +6,18 @@
 //
 
 import Foundation
+import SwiftData
 
-
-class Note: Identifiable, Hashable {
+@Model
+class Note {
 
     var title: String
-    var description: String
-    var id = UUID()
+    var content: String
+    var dueDate: Date?
     
-    init(title: String, description: String = "") {
+    init(title: String, content: String = "", dueDate: Date? = nil) {
         self.title = title
-        self.description = description
-    }
-    
-    static func sampleData() -> Array<Note> {
-        return [
-            Note(title: "Pack up for vacation", description: "Test description"),
-            Note(title: "Clean the kitchen")
-        ]
-    }
-    
-    // When can we consider two instances equal?
-    // Ans: When their id's are the same
-    static func == (lhs: Note, rhs: Note) -> Bool {
-        return lhs.id == rhs.id
-    }
-    
-    // The correct value to hash is the "id", since it's the same we are using
-    // on the "==" function. If we consider two Notes with the same UUID to be
-    // equal, the Hash value that they will provide should be the same as well,
-    // so we'll use the "id".
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
+        self.content = content
+        self.dueDate = dueDate
     }
 }

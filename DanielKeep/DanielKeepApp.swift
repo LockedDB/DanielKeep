@@ -6,17 +6,21 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct DanielKeepApp: App {
-    private var navigationModel = NavigationModel()
-    private var notesViewModel = NotesViewModel(noteLists: NotesList.sampleData())
+    
+    let container: ModelContainer = {
+        let schema = Schema([Note.self])
+        let container = try! ModelContainer(for: schema, configurations: [])
+        return container
+    }()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(navigationModel)
-                .environmentObject(notesViewModel)
+                .modelContainer(container)
         }
     }
 }

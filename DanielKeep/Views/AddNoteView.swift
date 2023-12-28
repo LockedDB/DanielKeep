@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct AddNoteView: View {
-    var list: NotesList
-    
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) var context
     
     @State private var title: String = ""
     @State private var description: String = ""
@@ -41,15 +40,12 @@ struct AddNoteView: View {
     }
     
     func saveNote() {
-        let newNote = Note(title: title, description: description)
-        
-        withAnimation {
-            list.addNote(note: newNote)
-        }
+        let newNote = Note(title: title, content: description)
+        context.insert(newNote)
         dismiss()
     }
 }
 
 #Preview {
-    AddNoteView(list: NotesList.sampleData().first!)
+    AddNoteView()
 }
