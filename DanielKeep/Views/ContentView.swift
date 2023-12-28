@@ -1,12 +1,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    private var lists = NotesList.sampleData()
+    @EnvironmentObject private var notesViewModel: NotesViewModel
     @EnvironmentObject private var navigationModel: NavigationModel
     
     var body: some View {
         NavigationSplitView {
-            List(lists, selection: $navigationModel.selectedList) {
+            List(notesViewModel.noteLists, selection: $navigationModel.selectedList) {
                 NavigationLink($0.name, value: $0)
             }
             .navigationTitle("Lists")
@@ -21,4 +21,9 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .environmentObject(NavigationModel())
+        .environmentObject(
+            NotesViewModel(
+                noteLists: NotesList.sampleData()
+            )
+        )
 }

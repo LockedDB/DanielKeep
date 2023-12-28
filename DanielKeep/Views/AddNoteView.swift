@@ -9,68 +9,47 @@ import SwiftUI
 
 struct AddNoteView: View {
     var list: NotesList
-    @Binding var showForm: Bool
+    
+    @Environment(\.dismiss) private var dismiss
     
     @State private var title: String = ""
     @State private var description: String = ""
+    @State private var date = Date()
     
     var body: some View {
         NavigationStack {
-        
-            VStack {
-                TextField(
-                    "Title",
-                    text: $title
-                )
-                .textInputAutocapitalization(.never)
-                
-                Divider()
-                
-                ZStack(alignment: .topLeading) {
-                    // TextEditor has a default padding that doesn't align well with other elements
-                    TextEditor(text: $description)
-                        .padding(.horizontal, -3)
-                        .padding(.vertical, -4)
-                        .font(.body)
-                    
-                    if description.isEmpty {
-                        Text("Description")
-                            .foregroundStyle(.placeholder)
-                            .padding(.top, 4)
-                            .font(.body)
-                    }
-                }
-                
-                
-                Spacer()
+            Form {
+                TextField("Title", text: $title)
+                TextField("Description", text: $description)
+                DatePicker("Due Date", selection: $date, displayedComponents: [.date])
             }
-            .padding()
+            .navigationTitle("Add Note")
+            .navigationBarTitleDisplayMode(.large)
             .toolbar {
-                ToolbarItem {
-                    Button(action: addNote, label: {
-                        Text("Add")
+                ToolbarItemGroup {
+                    Button(action: saveNote, label: {
+                        Text("Save")
+                    })
+                }
+                ToolbarItemGroup(placement: .topBarLeading) {
+                    Button(action: { dismiss() }, label: {
+                        Text("Cancel")
                     })
                 }
             }
-            .navigationTitle("Add Note")
         }
     }
     
-    func addNote() {
-        var newNote = Note(title: title, description: description)
+    func saveNote() {
+        let newNote = Note(title: title, description: description)
         
         withAnimation {
             list.addNote(note: newNote)
         }
-        showForm = false
+        dismiss()
     }
 }
 
 #Preview {
-    NavigationStack {
-        AddNoteView(
-            list: NotesList.sampleData().first!,
-            showForm: .constant(false)
-        )
-    }
+    AddNoteView(list: NotesList.sampleData().first!)
 }

@@ -29,7 +29,7 @@ struct ListView: View {
                     }
                 }
                 .sheet(isPresented: $showAddNoteForm) {
-                    AddNoteView(list: list, showForm: $showAddNoteForm)
+                    AddNoteView(list: list)
                 }
             } else {
                 Text("Please select a list")
@@ -42,6 +42,9 @@ struct ListView: View {
 }
 
 #Preview {
-    ListView(list: NotesList.sampleData()[0])
-        .environmentObject(NavigationModel())
+    NavigationStack {
+
+        ListView(list: NotesList.sampleData()[0])
+            .environmentObject(NavigationModel())
+    }
 }
