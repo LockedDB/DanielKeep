@@ -6,6 +6,17 @@ struct ContentView: View {
     @State private var isAddNoteSheetPresented = false
     @Environment(\.modelContext) var context
     
+    @State private var searchText: String = ""
+    
+    func filteredNotes() -> [Note] {
+        guard !searchText.isEmpty else { return notes }
+        
+        return notes.filter { note in
+            note.title.lowercased().contains(searchText.lowercased()) ||
+            note.content.lowercased().contains(searchText.lowercased())
+        }
+    }
+    
     var body: some View {
         NavigationStack {
             
@@ -23,7 +34,7 @@ struct ContentView: View {
                 }
             }
             .overlay {
-                if notes.isEmpty {
+                if filteredNotes().isEmpty {
                     ContentUnavailableView(label: {
                         Label("No Notes", systemImage: "list.clipboard")
                     }, description: {
@@ -34,6 +45,7 @@ struct ContentView: View {
                     .offset(y: -60)
                 }
             }
+            .searchable(text: $searchText)
         }
         
     }
@@ -50,7 +62,7 @@ extension ContentView {
         ]
         
         return LazyVGrid(columns: columns) {
-            ForEach(notes) { note in
+            ForEach(filteredNotes()) { note in
                 noteCard(note: note)
             }
         }
