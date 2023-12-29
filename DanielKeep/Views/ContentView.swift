@@ -66,7 +66,7 @@ extension ContentView {
                 noteCard(note: note)
             }
         }
-        .padding(.horizontal, 8)
+        .padding(.horizontal)
     }
     
     private func noteCard(note: Note) -> some View {
