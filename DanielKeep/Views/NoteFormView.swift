@@ -12,7 +12,6 @@ struct NoteFormView: View {
 
     @Binding var title: String
     @Binding var description: String
-    @Binding var currentColor: Color
     
     var body: some View {
         Form {
@@ -27,9 +26,5 @@ struct NoteFormView: View {
 }
 
 #Preview {
-    NoteFormView(
-        title: .constant(""),
-        description: .constant(""),
-        currentColor: .constant(Color.white)
-    )
+    NoteFormView(title: .constant(""), description: .constant(""))
 }

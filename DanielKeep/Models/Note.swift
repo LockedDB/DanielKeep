@@ -15,17 +15,17 @@ class Note {
     var title: String
     var content: String
     var dueDate: Date?
-    var bgColor: String?
+    var noteColor: NoteColor
     
     init(
         title: String,
         content: String = "",
         dueDate: Date? = nil,
-        bgColor: Color? = nil
+        bgColor: NoteColor = NoteColor.transparent
     ) {
         self.title = title
         self.content = content
         self.dueDate = dueDate
-        self.bgColor = Color.toHex(bgColor ?? Color(UIColor.systemBackground))()
+        self.noteColor = bgColor
     }
 }

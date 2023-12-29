@@ -80,20 +80,12 @@ extension ContentView {
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .topLeading)
-        .background(backgroundColor(for: note))
+        .background(note.noteColor.color)
         .clipShape(.rect(cornerRadius: 8))
         .overlay(
             RoundedRectangle(cornerRadius: 8)
                 .strokeBorder(.ultraThinMaterial, lineWidth: 1.5)
         )
-    }
-    
-    func backgroundColor(for note: Note) -> Color {
-        if let bgColorHex = note.bgColor {
-            return Color(hex: bgColorHex)
-        } else {
-            return Color(UIColor.systemBackground)
-        }
     }
 }
 
@@ -111,7 +103,7 @@ extension ContentView {
     note = Note(title: "Shorther ", content: "Example content")
     container.mainContext.insert(note)
     
-    note = Note(title: "Example Note extra large", content: "Example content with a super long description omg where is this going to end.", bgColor: Color.orange)
+    note = Note(title: "Example Note extra large", content: "Example content with a super long description omg where is this going to end.", bgColor: NoteColor.aka)
     container.mainContext.insert(note)
     
     note = Note(title: "Example Note", content: "Example content")

@@ -7,26 +7,28 @@
 
 import SwiftUI
 
-enum BgColors: String, CaseIterable {
-    case red = "#FF0000"
-    case green = "#00FF00"
-    case blue = "#0000FF"
-    case yellow = "#FFFF00"
-    case purple = "#800080"
-    case orange = "#FFA500"
-    case black = "#000000"
-    case white = "#FFFFFF"
-    case pink = "#FFC0CB"
-    case teal = "#008080"
+enum NoteColor: CaseIterable, Codable {
+    case aka,
+         bamboo,
+         beish,
+         forest,
+         metal,
+         pig,
+         pika,
+         sky,
+         submarine,
+         sun,
+         tinky,
+         transparent
     
     var color: Color {
-        return Color(hex: self.rawValue)
+        Color("\(self)")
     }
 }
 
 struct ColorPickerSheetView: View {
-
-    @Binding var currentColor: Color
+    
+    @Binding var currentColor: NoteColor
     
     var body: some View {
         VStack {
@@ -39,17 +41,26 @@ struct ColorPickerSheetView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(
-                        BgColors.allCases,
-                        id: \.hashValue
-                    ) { bgColor in
-                        Button(
-                            action: { changeColor(color: bgColor.color) }
-                        ) {
+                    
+                    Button(action: { changeColor(color: NoteColor.transparent )}) {
+                        Image(systemName: "paintbrush")
+                            .frame(width: 45, height: 45)
+                            .foregroundStyle(.black)
+                            .background(.white)
+                            .clipShape(.circle)
+                            .overlay {
+                                Circle().strokeBorder(.ultraThinMaterial, lineWidth: 2)
+                            }
+                    }
+                    
+                    ForEach(NoteColor.allCases, id: \.self) { bgColor in
+                        Button(action: { changeColor(color: bgColor) }) {
                             Circle()
                                 .fill(bgColor.color)
-                                .stroke(.ultraThickMaterial, lineWidth: 2)
+                                .stroke(.ultraThinMaterial, lineWidth: 2)
                                 .frame(width: 45, height: 45)
+                                .shadow(radius: 0.1)
+                                .padding(.vertical, 2)
                         }
                     }
                 }
@@ -58,20 +69,22 @@ struct ColorPickerSheetView: View {
         }
     }
     
-    func changeColor(color: Color) {
+    func changeColor(color: NoteColor) {
         withAnimation {
             currentColor = color
         }
     }
+    
+    
 }
 
 #Preview {
     // On preview this doesn't work
-    @State var currentColor: Color = Color.white
+    @State var currentColor: NoteColor = NoteColor.transparent
     
     return VStack {
         ColorPickerSheetView(currentColor: $currentColor)
-            .background(currentColor)
+            .background(currentColor.color)
     }
     
 }

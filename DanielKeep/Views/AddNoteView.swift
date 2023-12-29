@@ -16,33 +16,29 @@ struct AddNoteView: View {
     
     @State private var isColorPickerPresented = false
     
-    @State private var currentBgColor: Color = Color(UIColor.systemBackground)
+    @State private var currentNoteColor: NoteColor = NoteColor.transparent
     
     var body: some View {
         NavigationStack {
             VStack {
-                NoteFormView(
-                    title: $title,
-                    description: $description,
-                    currentColor: $currentBgColor
-                )
+                NoteFormView(title: $title, description: $description)
                 Spacer()
                 ColorPickerButton(isColorPickerPresented: $isColorPickerPresented)
             }
-            .background(currentBgColor)
+            .background(currentNoteColor.color)
             .navigationTitle("Add Note")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { toolbarItems }
         }
         .sheet(isPresented: $isColorPickerPresented) {
-            ColorPickerSheetView(currentColor: $currentBgColor)
+            ColorPickerSheetView(currentColor: $currentNoteColor)
                 .presentationDetents( [.height(120)] )
         }
         
     }
     
     func saveNote() {
-        let newNote = Note(title: title, content: description, bgColor: currentBgColor)
+        let newNote = Note(title: title, content: description, bgColor: currentNoteColor)
         context.insert(newNote)
         dismiss()
     }
