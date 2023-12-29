@@ -13,39 +13,54 @@ struct AddNoteView: View {
     
     @State private var title: String = ""
     @State private var description: String = ""
-    @State private var date = Date()
+    
+    @State private var isColorPickerPresented = false
+    
+    @State private var currentBgColor: Color = Color(UIColor.systemBackground)
     
     var body: some View {
         NavigationStack {
-            Form {
-                TextField("Title", text: $title)
-                TextField("Description", text: $description)
-                DatePicker("Due Date", selection: $date, displayedComponents: [.date])
+            VStack {
+                NoteFormView(
+                    title: $title,
+                    description: $description,
+                    currentColor: $currentBgColor
+                )
+                Spacer()
+                ColorPickerButton(isColorPickerPresented: $isColorPickerPresented)
             }
+            .background(currentBgColor)
             .navigationTitle("Add Note")
-            .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                ToolbarItemGroup {
-                    Button(action: saveNote, label: {
-                        Text("Save")
-                    })
-                }
-                ToolbarItemGroup(placement: .topBarLeading) {
-                    Button(action: { dismiss() }, label: {
-                        Text("Cancel")
-                    })
-                }
-            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar { toolbarItems }
         }
+        .sheet(isPresented: $isColorPickerPresented) {
+            ColorPickerSheetView(currentColor: $currentBgColor)
+                .presentationDetents( [.height(120)] )
+        }
+        
     }
     
     func saveNote() {
-        let newNote = Note(title: title, content: description)
+        let newNote = Note(title: title, content: description, bgColor: currentBgColor)
         context.insert(newNote)
         dismiss()
     }
+    
+    private var toolbarItems: some ToolbarContent {
+        Group {
+            ToolbarItemGroup {
+                Button(action: saveNote, label: {
+                    Text("Save")
+                })
+            }
+            ToolbarItemGroup(placement: .topBarLeading) {
+                Button(action: { dismiss() }, label: {
+                    Text("Cancel")
+                })
+            }
+        }
+    }
 }
 
-#Preview {
-    AddNoteView()
-}
+#Preview { AddNoteView() }

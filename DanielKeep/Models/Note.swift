@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import SwiftUI
 
 @Model
 class Note {
@@ -14,10 +15,17 @@ class Note {
     var title: String
     var content: String
     var dueDate: Date?
+    var bgColor: String?
     
-    init(title: String, content: String = "", dueDate: Date? = nil) {
+    init(
+        title: String,
+        content: String = "",
+        dueDate: Date? = nil,
+        bgColor: Color? = nil
+    ) {
         self.title = title
         self.content = content
         self.dueDate = dueDate
+        self.bgColor = Color.toHex(bgColor ?? Color(UIColor.systemBackground))()
     }
 }
