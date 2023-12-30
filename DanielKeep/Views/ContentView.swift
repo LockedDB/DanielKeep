@@ -7,6 +7,8 @@ struct ContentView: View {
     @Environment(\.modelContext) var context
     
     @State private var searchText: String = ""
+    @State private var selectedNote: Note?
+    @State private var pushView = false
     
     func filteredNotes() -> [Note] {
         guard !searchText.isEmpty else { return notes }
@@ -46,6 +48,22 @@ struct ContentView: View {
                 }
             }
             .searchable(text: $searchText)
+            .overlayPreferenceValue(TAnchorKey.self, { value in
+                GeometryReader { geometry in
+                    ForEach(filteredNotes()) { note in
+                        if let anchor = value[note.title] {
+                            let rect = geometry[anchor]
+                            noteCard(note: note)
+                                .frame(width: rect.width, height: rect.height)
+                                .offset(x: rect.minX, y: rect.minY)
+                                .allowsHitTesting(false)
+                        }
+                    }
+                }
+            })
+            .navigationDestination(isPresented: $pushView) {
+                AddNoteView()
+            }
         }
         
     }
@@ -63,7 +81,15 @@ extension ContentView {
         
         return LazyVGrid(columns: columns) {
             ForEach(filteredNotes()) { note in
-                noteCard(note: note)
+                Button(action: {
+                    selectedNote = note
+                    pushView.toggle()
+                }) {
+                    noteCard(note: note)
+                        .anchorPreference(key: TAnchorKey.self, value: .bounds, transform: { anchor in
+                            return [note.title: anchor]
+                        })
+                }
             }
         }
         .padding(.horizontal)
