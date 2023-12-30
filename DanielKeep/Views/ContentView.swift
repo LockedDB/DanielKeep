@@ -81,15 +81,14 @@ extension ContentView {
         
         return LazyVGrid(columns: columns) {
             ForEach(filteredNotes()) { note in
-                Button(action: {
-                    selectedNote = note
-                    pushView.toggle()
-                }) {
-                    noteCard(note: note)
-                        .anchorPreference(key: TAnchorKey.self, value: .bounds, transform: { anchor in
-                            return [note.title: anchor]
-                        })
-                }
+                noteCard(note: note)
+                    .anchorPreference(key: TAnchorKey.self, value: .bounds, transform: { anchor in
+                        return [note.title: anchor]
+                    })
+                    .onTapGesture {
+                        selectedNote = note
+                        pushView.toggle()
+                    }
             }
         }
         .padding(.horizontal)
@@ -98,10 +97,13 @@ extension ContentView {
     private func noteCard(note: Note) -> some View {
         return VStack(alignment: .leading) {
             Text(note.title)
+                .foregroundStyle(.black)
             if !note.content.isEmpty {
                 Text(note.content)
                     .font(.body)
                     .fontWeight(.light)
+                    .foregroundStyle(.primary)
+                    .frame(maxWidth: .infinity, alignment: .topLeading)
             }
         }
         .padding()
