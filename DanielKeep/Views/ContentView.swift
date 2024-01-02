@@ -46,6 +46,7 @@ struct ContentView: View {
                 }
             }
             .searchable(text: $searchText)
+            .navigationDestination(for: Note.self) { note in DetailView(note: note) }
         }
         
     }
@@ -70,22 +71,26 @@ extension ContentView {
     }
     
     private func noteCard(note: Note) -> some View {
-        return VStack(alignment: .leading) {
-            Text(note.title)
-            if !note.content.isEmpty {
-                Text(note.content)
-                    .font(.body)
-                    .fontWeight(.light)
+        return NavigationLink(value: note) {
+            VStack(alignment: .leading) {
+                Text(note.title)
+                if !note.content.isEmpty {
+                    Text(note.content)
+                        .font(.body)
+                        .fontWeight(.light)
+                }
             }
+            .multilineTextAlignment(.leading)
+            .foregroundStyle(.black)
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .topLeading)
+            .background(note.noteColor.color)
+            .clipShape(.rect(cornerRadius: 8))
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .strokeBorder(.ultraThinMaterial, lineWidth: 1.5)
+            )
         }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .topLeading)
-        .background(note.noteColor.color)
-        .clipShape(.rect(cornerRadius: 8))
-        .overlay(
-            RoundedRectangle(cornerRadius: 8)
-                .strokeBorder(.ultraThinMaterial, lineWidth: 1.5)
-        )
     }
 }
 
@@ -97,7 +102,7 @@ extension ContentView {
     var note = Note(title: "Note", content: "Empty Note")
     container.mainContext.insert(note)
     
-    note = Note(title: "Example Note title bit longer", content: "Example content")
+    note = Note(title: "Example note but title bit longer", content: "Example content")
     container.mainContext.insert(note)
     
     note = Note(title: "Shorther ", content: "Example content")
