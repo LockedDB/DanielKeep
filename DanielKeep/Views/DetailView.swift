@@ -39,43 +39,53 @@ struct DetailView: View {
     }
     
     var body: some View {
-        VStack {
-            Form {
-                TextField("Title", text: $title, axis: .vertical)
-                    .font(.title)
-                TextField("Description", text: $content, axis: .vertical)
-                    .fontWeight(.light)
+        NavigationStack {
+            VStack {
+                Form {
+                    TextField("Title", text: $title, axis: .vertical)
+                        .font(.title)
+                    TextField("Description", text: $content, axis: .vertical)
+                        .fontWeight(.light)
+                }
+                .formStyle(.columns)
+                .padding(.horizontal)
+                
+                Spacer()
             }
-            .formStyle(.columns)
-            .padding(.horizontal)
-            
-            Spacer()
+            .background(background.color)
+            .toolbar { toolbarItems }
+            .task {
+                /// If a note has been provided, load it into the text fields
+                guard note != nil else { return }
+                
+                title = note?.title ?? ""
+                content = note?.content ?? ""
+                background = note?.noteColor ?? NoteColor.transparent
+            }
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .background(background.color)
-        .toolbar { toolbarItems }
-        .task {
-            /// If a note has been provided, load it into the text fields
-            guard note != nil else { return }
-            
-            title = note?.title ?? ""
-            content = note?.content ?? ""
-            background = note?.noteColor ?? NoteColor.transparent
-        }
-        .navigationBarTitleDisplayMode(.inline)
     }
     
     private var toolbarItems: some ToolbarContent {
-        ToolbarItemGroup {
-            Button(action: saveNote, label: {
-                Image(systemName: "square.and.arrow.down")
-                    .foregroundStyle(.black)
-            })
-        } 
+        Group {
+            ToolbarItem {
+                Button(action: saveNote, label: {
+                    Image(systemName: "square.and.arrow.down")
+                        .foregroundStyle(.black)
+                        .font(.subheadline)
+                })
+            }
+            ToolbarItem(placement: .topBarLeading) {
+                Button(action: {dismiss()}, label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundStyle(.black)
+                        .font(.subheadline)
+                })
+            }
+        }
     }
 }
 
 #Preview {
-    NavigationStack {
-        DetailView(note: Note(title: "Sample title with a super large note", content: "Sample Content with a long text, enough to fit a couple lines.", bgColor: NoteColor.aka))
-    }
+    DetailView(note: Note(title: "Sample title with a super large note", content: "Sample Content with a long text, enough to fit a couple lines.", bgColor: NoteColor.aka))
 }

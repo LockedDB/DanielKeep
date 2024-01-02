@@ -7,6 +7,7 @@ struct ContentView: View {
     @Environment(\.modelContext) var context
     
     @State private var searchText: String = ""
+    @State private var selectedNote: Note?
     
     func filteredNotes() -> [Note] {
         guard !searchText.isEmpty else { return notes }
@@ -46,7 +47,9 @@ struct ContentView: View {
                 }
             }
             .searchable(text: $searchText)
-            .navigationDestination(for: Note.self) { note in DetailView(note: note) }
+            .fullScreenCover(item: $selectedNote) { note in
+                DetailView(note: note)
+            }
         }
         
     }
@@ -71,7 +74,7 @@ extension ContentView {
     }
     
     private func noteCard(note: Note) -> some View {
-        return NavigationLink(value: note) {
+        return 
             VStack(alignment: .leading) {
                 Text(note.title)
                 if !note.content.isEmpty {
@@ -80,6 +83,7 @@ extension ContentView {
                         .fontWeight(.light)
                 }
             }
+            .onTapGesture { selectedNote = note }
             .multilineTextAlignment(.leading)
             .foregroundStyle(.black)
             .padding()
@@ -91,7 +95,6 @@ extension ContentView {
                     .strokeBorder(.ultraThinMaterial, lineWidth: 1.5)
             )
         }
-    }
 }
 
 #Preview {
