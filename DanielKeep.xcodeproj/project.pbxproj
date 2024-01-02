@@ -12,6 +12,7 @@
 		960B44162B3EE36100F341A5 /* NoteFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960B44152B3EE36100F341A5 /* NoteFormView.swift */; };
 		960B44182B3EE38300F341A5 /* ColorPickerButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960B44172B3EE38300F341A5 /* ColorPickerButtonView.swift */; };
 		96483EBA2B405F2F00DB0787 /* TAnchorKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96483EB92B405F2F00DB0787 /* TAnchorKey.swift */; };
+		96483EBC2B406C7C00DB0787 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96483EBB2B406C7C00DB0787 /* DetailView.swift */; };
 		96B6C6222B3AD6C5009FD20D /* DanielKeepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B6C6212B3AD6C5009FD20D /* DanielKeepApp.swift */; };
 		96B6C6242B3AD6C5009FD20D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B6C6232B3AD6C5009FD20D /* ContentView.swift */; };
 		96B6C6262B3AD6C6009FD20D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96B6C6252B3AD6C6009FD20D /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 		960B44152B3EE36100F341A5 /* NoteFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFormView.swift; sourceTree = "<group>"; };
 		960B44172B3EE38300F341A5 /* ColorPickerButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerButtonView.swift; sourceTree = "<group>"; };
 		96483EB92B405F2F00DB0787 /* TAnchorKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TAnchorKey.swift; sourceTree = "<group>"; };
+		96483EBB2B406C7C00DB0787 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		96B6C61E2B3AD6C5009FD20D /* DanielKeep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DanielKeep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96B6C6212B3AD6C5009FD20D /* DanielKeepApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DanielKeepApp.swift; sourceTree = "<group>"; };
 		96B6C6232B3AD6C5009FD20D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				960B44102B3ED27500F341A5 /* ColorPickerSheetView.swift */,
 				960B44152B3EE36100F341A5 /* NoteFormView.swift */,
 				960B44172B3EE38300F341A5 /* ColorPickerButtonView.swift */,
+				96483EBB2B406C7C00DB0787 /* DetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				960B44162B3EE36100F341A5 /* NoteFormView.swift in Sources */,
 				960B44112B3ED27500F341A5 /* ColorPickerSheetView.swift in Sources */,
 				960B44182B3EE38300F341A5 /* ColorPickerButtonView.swift in Sources */,
+				96483EBC2B406C7C00DB0787 /* DetailView.swift in Sources */,
 				960B44142B3ED5FA00F341A5 /* Colors.swift in Sources */,
 				96B6C6242B3AD6C5009FD20D /* ContentView.swift in Sources */,
 				96483EBA2B405F2F00DB0787 /* TAnchorKey.swift in Sources */,

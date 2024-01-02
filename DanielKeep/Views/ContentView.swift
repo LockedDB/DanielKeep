@@ -51,7 +51,7 @@ struct ContentView: View {
             .overlayPreferenceValue(TAnchorKey.self, { value in
                 GeometryReader { geometry in
                     ForEach(filteredNotes()) { note in
-                        if let anchor = value[note.title] {
+                        if let anchor = value[note.title], selectedNote?.title != note.title {
                             let rect = geometry[anchor]
                             noteCard(note: note)
                                 .frame(width: rect.width, height: rect.height)
@@ -62,15 +62,41 @@ struct ContentView: View {
                 }
             })
             .navigationDestination(isPresented: $pushView) {
-                AddNoteView()
+                if let unwrappedNote = selectedNote {
+                    DetailView(
+                        title: unwrappedNote.title,
+                        content: unwrappedNote.content,
+                        noteColor: unwrappedNote.noteColor
+                    )
+                    .navigationBarTitleDisplayMode(.inline)
+                }
             }
         }
+        .overlayPreferenceValue(TAnchorKey.self, { value in
+            GeometryReader { geometry in
+                if let selectedNote, let anchor = value[selectedNote.title] {
+                    let rect = geometry[anchor]
+                    VStack {
+                        
+                        TextField("Title", text: .constant(selectedNote.title))
+                            .font(.title2)
+                        TextField("Description", text: .constant(selectedNote.content), axis: .vertical)
+                            .lineLimit(nil)
+                    
+                        Spacer()
+                    }
+                    .background(selectedNote.noteColor.color)
+                    .frame(width: rect.width, height: rect.height)
+                    .offset(x: rect.minX, y: rect.minY)
+                    .animation(.snappy(duration: 0.35, extraBounce: 0), value: rect)
+                }
+            }
+        })
         
     }
 }
 
 extension ContentView {
-    
     
     private func cardsGrid() -> some View {
         
