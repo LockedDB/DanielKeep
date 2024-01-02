@@ -26,7 +26,6 @@ struct ContentView: View {
             }
             .navigationTitle("Notes")
             .navigationBarTitleDisplayMode(.large)
-            .sheet(isPresented: $isAddNoteSheetPresented) { AddNoteView() }
             .toolbar {
                 if !notes.isEmpty {
                     Button("Add Note", systemImage: "plus") {

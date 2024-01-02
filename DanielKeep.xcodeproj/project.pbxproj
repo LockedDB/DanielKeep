@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		960B44112B3ED27500F341A5 /* ColorPickerSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960B44102B3ED27500F341A5 /* ColorPickerSheetView.swift */; };
 		960B44142B3ED5FA00F341A5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960B44132B3ED5FA00F341A5 /* Colors.swift */; };
-		960B44162B3EE36100F341A5 /* NoteFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960B44152B3EE36100F341A5 /* NoteFormView.swift */; };
 		960B44182B3EE38300F341A5 /* ColorPickerButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960B44172B3EE38300F341A5 /* ColorPickerButtonView.swift */; };
 		963F089D2B4479CA0055B63F /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963F089C2B4479CA0055B63F /* DetailView.swift */; };
 		96B6C6222B3AD6C5009FD20D /* DanielKeepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B6C6212B3AD6C5009FD20D /* DanielKeepApp.swift */; };
@@ -17,13 +16,11 @@
 		96B6C6262B3AD6C6009FD20D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96B6C6252B3AD6C6009FD20D /* Assets.xcassets */; };
 		96B6C62A2B3AD6C6009FD20D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96B6C6292B3AD6C6009FD20D /* Preview Assets.xcassets */; };
 		96F262B22B3C2C5D00C1F822 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F262B12B3C2C5D00C1F822 /* Note.swift */; };
-		96F262B42B3C7F1C00C1F822 /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F262B32B3C7F1C00C1F822 /* AddNoteView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		960B44102B3ED27500F341A5 /* ColorPickerSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerSheetView.swift; sourceTree = "<group>"; };
 		960B44132B3ED5FA00F341A5 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		960B44152B3EE36100F341A5 /* NoteFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFormView.swift; sourceTree = "<group>"; };
 		960B44172B3EE38300F341A5 /* ColorPickerButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerButtonView.swift; sourceTree = "<group>"; };
 		963F089C2B4479CA0055B63F /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		96B6C61E2B3AD6C5009FD20D /* DanielKeep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DanielKeep.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -33,7 +30,6 @@
 		96B6C6272B3AD6C6009FD20D /* DanielKeep.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DanielKeep.entitlements; sourceTree = "<group>"; };
 		96B6C6292B3AD6C6009FD20D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		96F262B12B3C2C5D00C1F822 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
-		96F262B32B3C7F1C00C1F822 /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +49,15 @@
 				960B44132B3ED5FA00F341A5 /* Colors.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		963B33032B449430009B767C /* ColorPickerViews */ = {
+			isa = PBXGroup;
+			children = (
+				960B44102B3ED27500F341A5 /* ColorPickerSheetView.swift */,
+				960B44172B3EE38300F341A5 /* ColorPickerButtonView.swift */,
+			);
+			path = ColorPickerViews;
 			sourceTree = "<group>";
 		};
 		96B6C6152B3AD6C5009FD20D = {
@@ -97,11 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				96B6C6232B3AD6C5009FD20D /* ContentView.swift */,
-				96F262B32B3C7F1C00C1F822 /* AddNoteView.swift */,
-				960B44102B3ED27500F341A5 /* ColorPickerSheetView.swift */,
-				960B44152B3EE36100F341A5 /* NoteFormView.swift */,
-				960B44172B3EE38300F341A5 /* ColorPickerButtonView.swift */,
 				963F089C2B4479CA0055B63F /* DetailView.swift */,
+				963B33032B449430009B767C /* ColorPickerViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -184,14 +186,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				960B44162B3EE36100F341A5 /* NoteFormView.swift in Sources */,
 				963F089D2B4479CA0055B63F /* DetailView.swift in Sources */,
 				960B44112B3ED27500F341A5 /* ColorPickerSheetView.swift in Sources */,
 				960B44182B3EE38300F341A5 /* ColorPickerButtonView.swift in Sources */,
 				960B44142B3ED5FA00F341A5 /* Colors.swift in Sources */,
 				96B6C6242B3AD6C5009FD20D /* ContentView.swift in Sources */,
 				96B6C6222B3AD6C5009FD20D /* DanielKeepApp.swift in Sources */,
-				96F262B42B3C7F1C00C1F822 /* AddNoteView.swift in Sources */,
 				96F262B22B3C2C5D00C1F822 /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

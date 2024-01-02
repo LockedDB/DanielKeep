@@ -10,9 +10,13 @@ import SwiftUI
 struct DetailView: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
+    
+    // Form
     @State private var title = ""
     @State private var content = ""
     @State private var background: NoteColor = NoteColor.transparent
+    
+    @State private var isColorPickerPresent = false
     
     var note: Note?
     
@@ -63,6 +67,8 @@ struct DetailView: View {
                 background = note?.noteColor ?? NoteColor.transparent
             }
             .navigationBarTitleDisplayMode(.inline)
+            
+            colorPicker()
         }
     }
     
@@ -82,6 +88,18 @@ struct DetailView: View {
                         .font(.subheadline)
                 })
             }
+        }
+    }
+    
+    @ViewBuilder
+    private func colorPicker() -> some View {
+        ColorPickerButton(
+            onPress: { isColorPickerPresent = true }
+        )
+        .background(background.color)
+        .sheet(isPresented: $isColorPickerPresent) {
+            ColorPickerSheetView(currentColor: $background)
+                .presentationDetents([.height(120)])
         }
     }
 }

@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ColorPickerButton: View {
-    @Binding var isColorPickerPresented: Bool
+    var onPress: () -> Void
 
     var body: some View {
         HStack {
-            Button(action: { isColorPickerPresented = true }) {
+            Button(action: { onPress() }) {
                 Image(systemName: "paintpalette")
                     .foregroundStyle(.black)
             }
