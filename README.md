@@ -24,3 +24,9 @@ The new navigation stack in SwiftUI introduces a more flexible and declarative a
 - Hierarchical navigation with nested views
 - Customizable navigation bars with custom content
 - Support for multiple navigation styles, including push, modal, and drawer
+
+| Home  | Change colors sheet | Note details |
+| - | - | - |
+| ![image](https://github.com/LockedDB/DanielKeep/assets/56168736/3f269766-fde7-4f21-ab9b-c381057a654e)  |  ![image](https://github.com/LockedDB/DanielKeep/assets/56168736/ecf2766c-5bbd-4019-b04b-35c36a4f4010) | ![image](https://github.com/LockedDB/DanielKeep/assets/56168736/dbc6fe9f-813d-4c72-b303-f91dc7754519) |
+
+
